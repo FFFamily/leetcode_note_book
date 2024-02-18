@@ -1,0 +1,56 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+.mvn
+.run
+.DS_Store
+
+
+
+# web
+web/vue-admin-template/.DS_Store
+web/vue-admin-template/node_modules/
+web/vue-admin-template/dist/
+web/vue-admin-template/npm-debug.log*
+web/vue-admin-template/yarn-debug.log*
+web/vue-admin-template/yarn-error.log*
+web/vue-admin-template/package-lock.json
+web/vue-admin-template/tests/**/coverage/
+
+# Editor directories and files
+web/vue-admin-template/.idea
+web/vue-admin-template/.vscode
+web/vue-admin-template/*.suo
+web/vue-admin-template/*.ntvs*
+web/vue-admin-template/*.njsproj
+web/vue-admin-template/*.sln
