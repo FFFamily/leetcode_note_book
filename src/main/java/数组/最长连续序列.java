@@ -1,6 +1,7 @@
 package 数组;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -29,6 +30,10 @@ public class 最长连续序列 {
 
     /**
      * 想到在遍历的过程中可以记录已经遍历过的值，和当前值作比较是否能整连续
+     * 这个也有问题
+     * 处理右侧的数据不能是直接获取，而是需要while循环向上获取，不然达不到连接左右侧的要求
+     * 那如果 map 里 存的是这个节点可达到的最大值
+     *      * 但是如果遇到重复数据了怎么办，不能无脑的直接+1
      */
     public static int longestConsecutive2(int[] nums) {
         int res = 0;
@@ -50,6 +55,36 @@ public class 最长连续序列 {
                 res = map.get(num)+1;
             }
 //            map.put(num,res);
+        }
+        return res;
+    }
+
+    /**
+     * 还是用 while 的方式求一下，但是就是不满足题目的 n 的 时间复杂度
+     * 如果是这样的话 其实都不用存储 key 对应的长度 只用关系有没有这个key 就好了
+     * @param nums
+     * @return
+     */
+    public static int longestConsecutive3(int[] nums) {
+        int res = 0;
+
+        HashSet<Integer> map = new HashSet<>();
+        for (int num : nums) {
+            map.add(num);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int num = nums[i];
+            if (!map.contains(num - 1)){
+                // set 中 不存在比自己小的，向前遍历
+                int currentNum = num;
+                int currentStreak = 1;
+
+                while (map.contains(currentNum + 1)) {
+                    currentNum += 1;
+                    currentStreak += 1;
+                }
+                res  = Math.max(res, currentStreak);
+            }
         }
         return res;
     }
