@@ -6,7 +6,7 @@ import java.util.List;
 
 public class 三数之和 {
     public static void main(String[] args) {
-
+        System.out.println(threeSum(new int[]{1,-1,-1,0}));
     }
 
     /**
@@ -17,7 +17,7 @@ public class 三数之和 {
      * @param nums
      * @return
      */
-    public List<List<Integer>> threeSum(int[] nums) {
+    public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> list = new ArrayList<>();
         for (int left = 0; left < nums.length; left++) {
@@ -29,18 +29,27 @@ public class 三数之和 {
             // 右侧指针
             int right = nums.length -1;
             for (int mid = left+1 ; mid < nums.length ; mid++){
-                if (mid > 0 && nums[mid] == nums[mid-1]){
+                if (mid > left+1 && nums[mid] == nums[mid-1]){
                     // 不能有重复
                     continue;
                 }
-                if (nums[left] + nums[mid] + nums[right] < 0){
+                while (mid < right &&  nums[left] + nums[mid] + nums[right] > 0){
                     // 相加如果小于0，证明已经没办法能加到0了
-                    continue;
+                    right--;
                 }
-
+                if (mid == right){
+                    break;
+                }
+                if (nums[left] + nums[mid] + nums[right] == 0){
+                    List<Integer> ans = new ArrayList<Integer>();
+                    ans.add(nums[left]);
+                    ans.add(nums[mid]);
+                    ans.add(nums[right]);
+                    list.add(ans);
+                }
             }
-
         }
+        return list;
     }
 
 
